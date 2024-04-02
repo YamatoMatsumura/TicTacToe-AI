@@ -13,7 +13,7 @@ class Board {
         char currentPlayer() const;
         std::vector<int> possibleMoves() const;
         bool gameOver() const;
-        char winner() const;
+        char winner() const; // Only call if terminal
     private:
         std::vector<char> _boardState;
 };

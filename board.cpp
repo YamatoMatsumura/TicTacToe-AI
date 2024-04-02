@@ -1,6 +1,7 @@
 #include "board.h"
 #include <vector>
 #include <fstream>
+#include <iostream> // Testing, delete later
 
 using namespace std;
 
@@ -67,39 +68,58 @@ bool Board::gameOver() const {
 }
 
 char Board::winner() const {
-    bool winnerStatus = true;
+    char winPlayer = '-';
 
     // Check horizontal 3 in a row
     int startPos = 0;
     int endPos = 2;
+    char hWinTrack;
     for (int i=0; i < 3; i++) {
-        char firstElement = _boardState.at(startPos);
+        hWinTrack = _boardState.at(startPos);
+        bool horizontalWin = true;
         for (int j=startPos; j <= endPos; j++) {
-            if (firstElement != _boardState.at(i)) {
-                winnerStatus = false;
+            if (hWinTrack != _boardState.at(j)) {
+                horizontalWin = false;
             }
         }
         startPos += 3;
         endPos += 3;
+
+        if (horizontalWin) {
+            winPlayer = hWinTrack;
+        }
     }
 
     // Check vertical 3 in a row
+    char vWinCheck;
     for (size_t i=0; i < _boardState.size() / 3; i++) {
-        char firstElement = _boardState.at(i);
-        if (firstElement != _boardState.at(i+3) || firstElement != _boardState.at(i+6)) {
-            winnerStatus = false;
+        vWinCheck = _boardState.at(i);
+        bool verticalWin = true;
+        if (vWinCheck != _boardState.at(i+3) || vWinCheck != _boardState.at(i+6)) {
+            verticalWin = false;
+        }
+
+        if (verticalWin) {
+            winPlayer = vWinCheck;
         }
     }
 
     // Check diagnol 3 in a row
+    char dWinCheck;
     vector<int> loopIndex = {0, 8, 2, 6};
     for (size_t i=0; i < loopIndex.size(); i+= 2) {
-        char middleElement = _boardState.at(4);
-        if (middleElement != _boardState.at(i) || middleElement != _boardState.at(i+1)) {
-            winnerStatus = false;
+        dWinCheck = _boardState.at(4);
+        bool diagnolWin = true;
+        if (dWinCheck != _boardState.at(loopIndex.at(i)) || dWinCheck != _boardState.at(loopIndex.at(i+1))) {
+            diagnolWin = false;
+        }
+
+        if (diagnolWin) {
+            winPlayer = dWinCheck;
         }
     }
-    return winnerStatus;
+
+    return winPlayer;
 }
 
 
