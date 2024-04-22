@@ -17,6 +17,7 @@ class Board {
         std::vector<int> possibleMoves() const;
         bool gameOver() const;
         char winner() const;
+        int evaulateBoard() const;  // Only call on terminal
         int getClickedSquare(const int X, const int Y);
         Board& operator=(const Board& OTHER);
 

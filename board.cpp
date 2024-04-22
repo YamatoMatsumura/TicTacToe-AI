@@ -140,6 +140,18 @@ char Board::winner() const {
     return winPlayer;
 }
 
+int Board::evaulateBoard() const {
+    if (this->winner() == 'X') {
+        return 1;
+    }
+    else if (this->winner() == 'O') {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+
 int Board::getClickedSquare(const int X, const int Y) {
     const int WINDOW_WIDTH = 690;
     const int SQUARE_WIDTH = 230;

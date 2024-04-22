@@ -1,22 +1,10 @@
-#include "ai.h"
+#include "minimax.h"
 
 #include <vector> // Might not need
 #include <iostream> // delete after testing
 
 using namespace std;
 
-
-int evaluateBoard(const Board BOARD) {
-    if (BOARD.winner() == 'X') {
-        return 1;
-    }
-    else if (BOARD.winner() == 'O') {
-        return -1;
-    }
-    else {
-        return 0;
-    }
-}
 
 int minimax(Board board) {
     char currentPlayer = board.currentPlayer();
@@ -36,7 +24,7 @@ void max(Board board, int& bestMove, int& bestValue) {
     int possibleValue = 999;
 
     if (board.gameOver()) {
-        bestValue = evaluateBoard(board);
+        bestValue = board.evaulateBoard();
         cout << "gameOver, max value: " << bestValue << endl;
     }
     else {
@@ -79,7 +67,7 @@ void min(Board board, int& bestMove, int& bestValue) {
     int possibleValue = 999;
 
     if (board.gameOver()) {
-        bestValue = evaluateBoard(board);
+        bestValue = board.evaulateBoard();
         cout << "gameOver, min value: " << bestValue << endl;
     }
     else {
