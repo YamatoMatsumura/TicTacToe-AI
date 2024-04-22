@@ -1,27 +1,26 @@
 # THE NAME OF YOUR EXECUTABLE
-TARGET = tictactoe
+TARGET = tictactoe.exe
 # ALL CPP COMPILABLE IMPLEMENTATION FILES THAT MAKE UP THE PROJECT
 SRC_FILES = main.cpp board.cpp ai.cpp
 
 # NO EDITS NEEDED BELOW THIS LINE
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors
+CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors -g
 CXXFLAGS_DEBUG = -g
 CXXVERSION = -std=c++17
 
 OBJECTS = $(SRC_FILES:.cpp=.o)
 
-ifeq ($(OS),Windows_NT)
+ifeq ($(shell echo "Windows"), "Windows")
 	TARGET := $(TARGET).exe
 	DEL = del
 	Q =
 
-	INC_PATH = C:\Users\yamth\OneDrive\Desktop\CSCI200\mingw64\mingw64\include
-	LIB_PATH = C:\Users\yamth\OneDrive\Desktop\CSCI200\mingw64\mingw64\lib
+	INC_PATH = /usr/local/include/
+	LIB_PATH = /usr/local/lib/
 
 	ARCH = 
-	RPATH =
 else
 	DEL = rm -f
 	Q = "
@@ -32,12 +31,10 @@ else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
 		CXXFLAGS += -D LINUX
-		RPATH =
 	endif
 	ifeq ($(UNAME_S),Darwin)
 		TARGET_MAKEFILE = Makefile.osx
 		CXXFLAGS += -D OSX
-		RPATH = -Wl,-rpath,/Library/Frameworks
 	endif
 
 	UNAME_P := $(shell uname -p)
@@ -57,10 +54,10 @@ LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CXX) $(ARCH) -o $@ $^ $(RPATH) -L$(LIB_PATH) $(LIBS)
+	$(CXX) $(ARCH) -o $@ $^ -L$(LIB_PATH) $(LIBS)
 
 .cpp.o:
-	$(CXX) $(CXXFLAGS) $(ARCH) $(CXXVERSION) -o $@ -c $< -I$(INC_PATH)
+	$(CXX) $(CXXFLAGS) $(ARCH) -o $@ -c $< -I$(INC_PATH)
 
 clean:
 	$(DEL) $(TARGET) $(OBJECTS)
@@ -73,3 +70,7 @@ depend:
 
 .PHONY: all clean depend
 
+# DEPENDENCIES
+main.o: main.cpp board.h ai.h
+board.o: board.cpp board.h
+ai.o: ai.cpp ai.h board.h
