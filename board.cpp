@@ -140,6 +140,26 @@ char Board::winner() const {
     return winPlayer;
 }
 
+int Board::getClickedSquare(const int X, const int Y) {
+    const int WINDOW_WIDTH = 690;
+    const int SQUARE_WIDTH = 230;
+    int column = 0;
+    int row = 0;
+    for (int i=SQUARE_WIDTH; i <= 690; i+= SQUARE_WIDTH) {
+        if (X > i) {
+            column += 1;
+        }
+
+        if (Y > i) {
+            row += 1;
+        }
+    }
+
+    // Get index of board vector from row & column
+    int index = row * 3 + column;
+    return index;
+}
+
 Board& Board::operator=(const Board& OTHER) {
     if (this == &OTHER) {
         return *this;
