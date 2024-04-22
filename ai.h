@@ -5,13 +5,10 @@
 #include <vector>
 #include <fstream>
 
-class AI {
-    public:
-        int evaulateBoard(const Board board);
-        std::vector<int> minimax();
-        std::vector<int> min();
-        std::vector<int> max();
-        void outputMove(std::ostream& out);
-};
+int evaulateBoard(const Board BOARD);  // Only call on terminal
+int minimax(Board board);
+void min(Board board, int& bestMove, int& bestValue);
+void max(Board board, int& bestMove, int& bestValue);
+void outputMove(std::ostream& out);
 
 #endif // AI_H

@@ -8,12 +8,17 @@ class Board {
     public:
         Board();
         Board(const std::vector<char> BOARD_STATE);
+        Board(const Board& OTHER);
+        ~Board();
         std::vector<char> getBoardState() const;
+        void setBoardState(const std::vector<char> BOARD_STATE);
         void addMove(const int SQUARE, const char MOVE);
         char currentPlayer() const;
         std::vector<int> possibleMoves() const;
         bool gameOver() const;
-        char winner() const; // Only call if terminal
+        char winner() const;
+        Board& operator=(const Board& OTHER);
+
     private:
         std::vector<char> _boardState;
 };

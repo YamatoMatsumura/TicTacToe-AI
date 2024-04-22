@@ -17,8 +17,23 @@ Board::Board(const vector<char> BOARD_STATE) {
     _boardState = BOARD_STATE;
 }
 
+Board::~Board() {
+    _boardState.clear();
+}
+
+Board::Board(const Board& OTHER) {
+    _boardState.clear();
+    for (int i=0; i < 9; i++) {
+        _boardState.push_back(OTHER.getBoardState().at(i));
+    }
+}
+
 vector<char> Board::getBoardState() const{
     return _boardState;
+}
+
+void Board::setBoardState(const vector<char> BOARD_STATE) {
+    _boardState = BOARD_STATE;
 }
 
 void Board::addMove(const int SQUARE, const char MOVE) {
@@ -59,6 +74,9 @@ vector<int> Board::possibleMoves() const {
 }
 
 bool Board::gameOver() const {
+    if (winner() != '-') {
+        return true;
+    }
     for (char item : _boardState) {
         if (item == '-') {
             return false;
@@ -120,6 +138,17 @@ char Board::winner() const {
     }
 
     return winPlayer;
+}
+
+Board& Board::operator=(const Board& OTHER) {
+    if (this == &OTHER) {
+        return *this;
+    }
+
+    for (size_t i=0; i < this->_boardState.size(); i++) {
+        this->_boardState.at(i) = OTHER._boardState.at(i);
+    }
+    return *this;
 }
 
 
