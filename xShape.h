@@ -6,8 +6,10 @@
 class XShape {
     public:
         XShape();
-        void setPosition(const double X, const double Y);
+        void setPosition(const int X, const int Y);
         void draw(sf::RenderWindow& window);
+        bool checkCollision(const int X, const int Y);
+
     private:
         sf::RectangleShape _xLine1;
         sf::RectangleShape _xLine2;      

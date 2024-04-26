@@ -16,7 +16,7 @@ XShape::XShape() {
     _xLine2.rotate(135);
 }
 
-void XShape::setPosition(const double X, const double Y) {
+void XShape::setPosition(const int X, const int Y) {
     _xLine1.setPosition(X, Y);
     _xLine2.setPosition(X, Y);
 }
@@ -24,4 +24,15 @@ void XShape::setPosition(const double X, const double Y) {
 void XShape::draw(RenderWindow& window) {
     window.draw(_xLine1);
     window.draw(_xLine2);
+}
+
+bool XShape::checkCollision(const int X, const int Y) {
+    const int floatX = static_cast<float> (X);
+    const int floatY = static_cast<float> (Y);
+    if (_xLine1.getGlobalBounds().contains(Vector2f(floatX, floatY)) || _xLine2.getGlobalBounds().contains(Vector2f(floatX, floatY))) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
