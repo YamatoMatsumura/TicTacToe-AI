@@ -71,6 +71,9 @@ depend:
 .PHONY: all clean depend
 
 # DEPENDENCIES
-main.o: main.cpp board.h minimax.h
+main.o: main.cpp board.h minimax.h display.h xShape.h oShape.h
 board.o: board.cpp board.h
 minimax.o: minimax.cpp minimax.h board.h
+display.o: display.cpp display.h xShape.h oShape.h
+xShape.o: xShape.cpp xShape.h
+oShape.o: oShape.cpp oShape.h
