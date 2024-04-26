@@ -6,11 +6,9 @@
 using namespace std;
 
 Board::Board() {
-    vector<char> boardState;
     for (int i=0; i < 9; i++) {
-        boardState.push_back('-');
+        _boardState.push_back('-');
     }
-    _boardState = boardState;
 }
 
 Board::Board(const vector<char> BOARD_STATE) {
@@ -19,6 +17,13 @@ Board::Board(const vector<char> BOARD_STATE) {
 
 Board::~Board() {
     _boardState.clear();
+}
+
+void Board::restart() {
+    _boardState.clear();
+    for (int i=0; i < 9; i++) {
+        _boardState.push_back('-');
+    }
 }
 
 Board::Board(const Board& OTHER) {
@@ -110,37 +115,37 @@ char Board::winner() const {
         startPos += 3;
         endPos += 3;
 
-        if (horizontalWin) {
+        if (horizontalWin && hWinTrack != '-') {
             winPlayer = hWinTrack;
         }
     }
 
     // Check vertical 3 in a row
-    char vWinCheck;
+    char vWinTrack;
     for (size_t i=0; i < _boardState.size() / 3; i++) {
-        vWinCheck = _boardState.at(i);
+        vWinTrack = _boardState.at(i);
         bool verticalWin = true;
-        if (vWinCheck != _boardState.at(i+3) || vWinCheck != _boardState.at(i+6)) {
+        if (vWinTrack != _boardState.at(i+3) || vWinTrack != _boardState.at(i+6)) {
             verticalWin = false;
         }
 
-        if (verticalWin) {
-            winPlayer = vWinCheck;
+        if (verticalWin && vWinTrack != '-') {
+            winPlayer = vWinTrack;
         }
     }
 
     // Check diagnol 3 in a row
-    char dWinCheck;
+    char dWinTrack;
     vector<int> loopIndex = {0, 8, 2, 6};
     for (size_t i=0; i < loopIndex.size(); i+= 2) {
-        dWinCheck = _boardState.at(4);
+        dWinTrack = _boardState.at(4);
         bool diagnolWin = true;
-        if (dWinCheck != _boardState.at(loopIndex.at(i)) || dWinCheck != _boardState.at(loopIndex.at(i+1))) {
+        if (dWinTrack != _boardState.at(loopIndex.at(i)) || dWinTrack != _boardState.at(loopIndex.at(i+1))) {
             diagnolWin = false;
         }
 
-        if (diagnolWin) {
-            winPlayer = dWinCheck;
+        if (diagnolWin && dWinTrack != '-') {
+            winPlayer = dWinTrack;
         }
     }
 

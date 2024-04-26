@@ -10,6 +10,7 @@ class Board {
         Board(const std::vector<char> BOARD_STATE);
         Board(const Board& OTHER);
         ~Board();
+        void restart();
         std::vector<char> getBoardState() const;
         void setBoardState(const std::vector<char> BOARD_STATE);
         bool addMove(const int SQUARE, const char MOVE);
