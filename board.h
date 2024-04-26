@@ -12,7 +12,7 @@ class Board {
         ~Board();
         std::vector<char> getBoardState() const;
         void setBoardState(const std::vector<char> BOARD_STATE);
-        void addMove(const int SQUARE, const char MOVE);
+        bool addMove(const int SQUARE, const char MOVE);
         char currentPlayer() const;
         std::vector<int> possibleMoves() const;
         bool gameOver() const;

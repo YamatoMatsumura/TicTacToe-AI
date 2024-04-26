@@ -36,9 +36,16 @@ void Board::setBoardState(const vector<char> BOARD_STATE) {
     _boardState = BOARD_STATE;
 }
 
-void Board::addMove(const int SQUARE, const char MOVE) {
+bool Board::addMove(const int SQUARE, const char MOVE) {
+    if (_boardState.at(SQUARE) != '-') {
+        return false;
+        cout << "invalid move" << endl;
+    }
+
     _boardState.erase(_boardState.begin() + SQUARE);
     _boardState.insert(_boardState.begin() + SQUARE, MOVE);
+    return true;
+
 }
 
 char Board::currentPlayer() const {
