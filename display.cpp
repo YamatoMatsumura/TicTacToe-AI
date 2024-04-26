@@ -65,3 +65,48 @@ char TicTacToeDisplay::checkChosenPlayer(const int X, const int Y) {
     }
 
 }
+
+int TicTacToeDisplay::getClickedSquare(const int X, const int Y) {
+    const int WINDOW_WIDTH = 690;
+    const int SQUARE_WIDTH = 230;
+    int col = 0;
+    int row = 0;
+    for (int i=SQUARE_WIDTH; i <= 690; i+= SQUARE_WIDTH) {
+        if (X > i) {
+            col += 1;
+        }
+
+        if (Y > i) {
+            row += 1;
+        }
+    }
+
+    // Get index of board vector from row & column
+    int index = row * 3 + col;
+    return index;
+}
+
+void TicTacToeDisplay::displayBoardMoves(RenderWindow& window, const Board BOARD) {
+    const int BOARD_SIZE = 9;
+    const int PIECE_OFFSET = 115;
+    int rowOffset = 1;
+    int colOffset = 1;
+    for (int i=0; i < BOARD_SIZE; i++) {
+        if (BOARD.getBoardState().at(i) == 'X') {
+            _xShape.setPosition(PIECE_OFFSET * rowOffset, PIECE_OFFSET * colOffset);
+            _xShape.draw(window);
+        }
+        if (BOARD.getBoardState().at(i) == 'O') {
+            _oShape.setPosition(PIECE_OFFSET * rowOffset, PIECE_OFFSET * colOffset);
+            _oShape.draw(window);
+        }
+
+        if (rowOffset == 5) {
+            rowOffset = 1;
+            colOffset += 2;
+        }
+        else {
+            rowOffset += 2;
+        }
+    }
+}

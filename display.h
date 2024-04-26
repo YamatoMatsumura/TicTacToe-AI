@@ -5,6 +5,7 @@
 
 #include "xShape.h"
 #include "oShape.h"
+#include "board.h"
 
 class TicTacToeDisplay {
     public:
@@ -12,6 +13,8 @@ class TicTacToeDisplay {
         void displayBoard(sf::RenderWindow& window);
         void displayMenu(sf::RenderWindow& window);
         char checkChosenPlayer(const int X, const int Y);
+        int getClickedSquare(const int X, const int Y);
+        void displayBoardMoves(sf::RenderWindow& window, const Board BOARD);
 
     private:
         XShape _xShape;

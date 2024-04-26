@@ -18,7 +18,7 @@ class Board {
         bool gameOver() const;
         char winner() const;
         int evaulateBoard() const;  // Only call on terminal
-        int getClickedSquare(const int X, const int Y);
+        int getClickedSquare(const int X, const int Y, int &row, int &col);
         Board& operator=(const Board& OTHER);
 
     private:
