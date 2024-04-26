@@ -15,6 +15,7 @@ class TicTacToeDisplay {
         char checkChosenPlayer(const int X, const int Y);
         int getClickedSquare(const int X, const int Y);
         void displayBoardMoves(sf::RenderWindow& window, const Board BOARD);
+        void displayGameOver(sf::RenderWindow& window, const Board BOARD);
 
     private:
         XShape _xShape;
@@ -24,6 +25,7 @@ class TicTacToeDisplay {
         sf::RectangleShape _boardVLine2;
         sf::RectangleShape _boardHLine1;
         sf::RectangleShape _boardHLine2;
+        sf::RectangleShape _gameOverLine;
         sf::Font _font;
         sf::Text _menuText;
 
