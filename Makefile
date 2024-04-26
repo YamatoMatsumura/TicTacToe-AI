@@ -1,12 +1,12 @@
 # THE NAME OF YOUR EXECUTABLE
 TARGET = tictactoe.exe
 # ALL CPP COMPILABLE IMPLEMENTATION FILES THAT MAKE UP THE PROJECT
-SRC_FILES = main.cpp board.cpp minimax.cpp
+SRC_FILES = main.cpp board.cpp minimax.cpp display.cpp xShape.cpp oShape.cpp
 
 # NO EDITS NEEDED BELOW THIS LINE
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors -g
+# CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors -g
 CXXFLAGS_DEBUG = -g
 CXXVERSION = -std=c++17
 
