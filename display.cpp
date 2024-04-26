@@ -47,9 +47,21 @@ void TicTacToeDisplay::displayMenu(RenderWindow& window) {
     _menuText.setPosition(80, 50);
     window.draw(_menuText);
 
-
     _xShape.setPosition(200, 380);
     _xShape.draw(window);
     _oShape.setPosition(490, 380);
     _oShape.draw(window);
+}
+
+char TicTacToeDisplay::checkChosenPlayer(const int X, const int Y) {
+    if (_xShape.checkCollision(X, Y)) {
+        return 'X';
+    }
+    else if (_oShape.checkCollision(X, Y)) {
+        return 'O';
+    }
+    else {
+        return '-';
+    }
+
 }

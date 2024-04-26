@@ -11,6 +11,7 @@ class TicTacToeDisplay {
         TicTacToeDisplay();
         void displayBoard(sf::RenderWindow& window);
         void displayMenu(sf::RenderWindow& window);
+        char checkChosenPlayer(const int X, const int Y);
 
     private:
         XShape _xShape;
