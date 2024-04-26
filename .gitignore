@@ -1,6 +1,8 @@
 # Other
 to-do.txt
 Makefile.bak
+/.vscode
+/fonts
 
 # Prerequisites
 *.d
