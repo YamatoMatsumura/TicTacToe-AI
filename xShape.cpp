@@ -7,6 +7,7 @@ XShape::XShape() {
     const int X_LENGTH = 160;
     const int X_THICKNESS = 10;
 
+    // Initialize each line in X
     _xLine1.setSize(Vector2f(X_LENGTH, X_THICKNESS));
     _xLine1.setOrigin(X_LENGTH/2, X_THICKNESS/2);
     _xLine1.rotate(45);
@@ -29,6 +30,7 @@ void XShape::draw(RenderWindow& window) {
 bool XShape::checkCollision(const int X, const int Y) {
     const int floatX = static_cast<float> (X);
     const int floatY = static_cast<float> (Y);
+
     if (_xLine1.getGlobalBounds().contains(Vector2f(floatX, floatY)) || _xLine2.getGlobalBounds().contains(Vector2f(floatX, floatY))) {
         return true;
     }
