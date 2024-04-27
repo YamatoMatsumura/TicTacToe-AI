@@ -1,12 +1,14 @@
 #include "board.h"
 #include <vector>
-#include <fstream>
-#include <iostream> // Testing, delete later
+#include <fstream> // Not used yet
 
 using namespace std;
 
 Board::Board() {
-    for (int i=0; i < 9; i++) {
+    const int BOARD_SIZE = 9;
+
+    // Initialize empty board
+    for (int i=0; i < BOARD_SIZE; i++) {
         _boardState.push_back('-');
     }
 }
@@ -20,15 +22,21 @@ Board::~Board() {
 }
 
 void Board::restart() {
+    const int BOARD_SIZE = 9;
+
+    // Re-initialize an empty board
     _boardState.clear();
-    for (int i=0; i < 9; i++) {
+    for (int i=0; i < BOARD_SIZE; i++) {
         _boardState.push_back('-');
     }
 }
 
 Board::Board(const Board& OTHER) {
+    const int BOARD_SIZE = 9;
+
+    // Create a board copy
     _boardState.clear();
-    for (int i=0; i < 9; i++) {
+    for (int i=0; i < BOARD_SIZE; i++) {
         _boardState.push_back(OTHER.getBoardState().at(i));
     }
 }
@@ -42,20 +50,22 @@ void Board::setBoardState(const vector<char> BOARD_STATE) {
 }
 
 bool Board::addMove(const int SQUARE, const char MOVE) {
+    // Check if SQUARE is an empty space
     if (_boardState.at(SQUARE) != '-') {
         return false;
-        cout << "invalid move" << endl;
     }
 
+    // Add move
     _boardState.erase(_boardState.begin() + SQUARE);
     _boardState.insert(_boardState.begin() + SQUARE, MOVE);
-    return true;
 
+    return true;
 }
 
 char Board::currentPlayer() const {
     int XCount = 0;
     int YCount = 0;
+
     // Count number of X and O in board
     for (char item : _boardState) {
         if (item == 'X') {
@@ -77,6 +87,8 @@ char Board::currentPlayer() const {
 
 vector<int> Board::possibleMoves() const {
     vector<int> moves;
+
+    // Get all squares that aren't empty
     for (size_t i=0; i < _boardState.size(); i++) {
         if (_boardState.at(i) == '-') {
             moves.push_back(i);
@@ -86,34 +98,42 @@ vector<int> Board::possibleMoves() const {
 }
 
 bool Board::gameOver() const {
+    // Check if someone won
     if (winner() != '-') {
         return true;
     }
+
+    // Check for no remaining empty spaces left
     for (char item : _boardState) {
         if (item == '-') {
             return false;
         }
     }
+
     return true;
 }
 
 char Board::winner() const {
+    const int ROW_COL_LEN = 3;
     char winPlayer = '-';
 
     // Check horizontal 3 in a row
     int startPos = 0;
-    int endPos = 2;
-    char hWinTrack;
-    for (int i=0; i < 3; i++) {
+    int endPos = 2; // Since 3x3 board
+    char hWinTrack; // Becomes piece at starting index to check if all other pieces in that row are the same
+
+    // Loop over each row
+    for (int i=0; i < ROW_COL_LEN; i++) {
         hWinTrack = _boardState.at(startPos);
         bool horizontalWin = true;
         for (int j=startPos; j <= endPos; j++) {
+            // If piece at starting index doesn't match piece in same row
             if (hWinTrack != _boardState.at(j)) {
                 horizontalWin = false;
             }
         }
-        startPos += 3;
-        endPos += 3;
+        startPos += ROW_COL_LEN;
+        endPos += ROW_COL_LEN;
 
         if (horizontalWin && hWinTrack != '-') {
             winPlayer = hWinTrack;
@@ -121,8 +141,10 @@ char Board::winner() const {
     }
 
     // Check vertical 3 in a row
-    char vWinTrack;
-    for (size_t i=0; i < _boardState.size() / 3; i++) {
+    char vWinTrack; // Becomes piece at starting index to check if all other pieces in that col are the same
+
+    // Loop over each col
+    for (size_t i=0; i < ROW_COL_LEN; i++) {
         vWinTrack = _boardState.at(i);
         bool verticalWin = true;
         if (vWinTrack != _boardState.at(i+3) || vWinTrack != _boardState.at(i+6)) {
@@ -136,7 +158,9 @@ char Board::winner() const {
 
     // Check diagnol 3 in a row
     char dWinTrack;
-    vector<int> loopIndex = {0, 8, 2, 6};
+    vector<int> loopIndex = {0, 8, 2, 6}; // 0, 8 is top left and bottom right. 2, 6 is top right and bottom left
+
+    // Loop over needed indexes in loopIndex
     for (size_t i=0; i < loopIndex.size(); i+= 2) {
         dWinTrack = _boardState.at(4);
         bool diagnolWin = true;
@@ -153,10 +177,10 @@ char Board::winner() const {
 }
 
 int Board::evaulateBoard() const {
-    if (this->winner() == 'X') {
+    if (winner() == 'X') {
         return 1;
     }
-    else if (this->winner() == 'O') {
+    else if (winner() == 'O') {
         return -1;
     }
     else {

@@ -2,7 +2,7 @@
 #define BOARD_H
 
 #include <vector>
-#include <fstream>
+#include <fstream> // Not used yet
 
 class Board {
     public:
@@ -19,13 +19,12 @@ class Board {
         bool gameOver() const;
         char winner() const;
         int evaulateBoard() const;  // Only call on terminal
-        int getClickedSquare(const int X, const int Y, int &row, int &col);
         Board& operator=(const Board& OTHER);
 
     private:
         std::vector<char> _boardState;
 };
 
-std::ostream& operator<<(std::ostream& out, const Board& BOARD);
+std::ostream& operator<<(std::ostream& out, const Board& BOARD); // For testing, can delete
 
 #endif // BOARD_H

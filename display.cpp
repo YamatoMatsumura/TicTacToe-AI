@@ -18,6 +18,8 @@ TicTacToeDisplay::TicTacToeDisplay() {
     const int BOARD_THICKNESS = 5;
     const int SQUARE_SIZE = 230;
 
+    // Initialize variables
+
     _boardVLine1.setSize(Vector2f(BOARD_LENGTH, BOARD_THICKNESS));
     _boardVLine1.setPosition(SQUARE_SIZE, 20);
     _boardVLine1.rotate(90);
@@ -43,6 +45,7 @@ void TicTacToeDisplay::displayBoard(RenderWindow& window) {
 }
 
 void TicTacToeDisplay::displayMenu(RenderWindow& window) {
+    // Display "Choose Player" text
     _menuText.setFont(_font);
     _menuText.setCharacterSize(80);
     _menuText.setString("Choose Player");
@@ -50,6 +53,7 @@ void TicTacToeDisplay::displayMenu(RenderWindow& window) {
     _menuText.setPosition(80, 50);
     window.draw(_menuText);
 
+    // Display X and O options in menu
     _xShape.setPosition(200, 380);
     _xShape.draw(window);
     _oShape.setPosition(490, 380);
@@ -74,6 +78,8 @@ int TicTacToeDisplay::getClickedSquare(const int X, const int Y) {
     const int SQUARE_WIDTH = 230;
     int col = 0;
     int row = 0;
+
+    // Get col and row num from mouse pos
     for (int i=SQUARE_WIDTH; i <= WINDOW_WIDTH; i+= SQUARE_WIDTH) {
         if (X > i) {
             col += 1;
@@ -84,7 +90,7 @@ int TicTacToeDisplay::getClickedSquare(const int X, const int Y) {
         }
     }
 
-    // Get index of board vector from row & column
+    // Get index of board vector from row and col
     int index = row * 3 + col;
     return index;
 }
@@ -94,6 +100,8 @@ void TicTacToeDisplay::displayBoardMoves(RenderWindow& window, const Board BOARD
     const int PIECE_OFFSET = 115;
     int rowOffset = 1;
     int colOffset = 1;
+
+    // Loop through board and display each move
     for (int i=0; i < BOARD_SIZE; i++) {
         if (BOARD.getBoardState().at(i) == 'X') {
             _xShape.setPosition(PIECE_OFFSET * rowOffset, PIECE_OFFSET * colOffset);
@@ -104,6 +112,7 @@ void TicTacToeDisplay::displayBoardMoves(RenderWindow& window, const Board BOARD
             _oShape.draw(window);
         }
 
+        // Update offsets moves in different rows/cols display
         if (rowOffset == 5) {
             rowOffset = 1;
             colOffset += 2;
@@ -123,6 +132,7 @@ void TicTacToeDisplay::displayGameOver(RenderWindow& window, const Board BOARD) 
     int rowIter = 0;
     int colIter = 0;    
 
+    // Loop over board and check for win type
     for (size_t i=0; i < BOARD.getBoardState().size(); i++) {
         // Check horizontal
         if (BOARD.getBoardState().at(i) == winPlayer) {
@@ -169,7 +179,7 @@ void TicTacToeDisplay::displayGameOver(RenderWindow& window, const Board BOARD) 
 
         // Check for diagnol
         if (BOARD.getBoardState().at(4) == winPlayer) {
-            int checkPos[2][2] = {{0, 8}, {2, 6}};
+            int checkPos[2][2] = {{0, 8}, {2, 6}}; // 0,8 is top left and bottom right. 2,6 is top right and bottom left
             for (int i=0; i < 2; i++) {
                 bool diagnolWin = true;
                 for (int j=0; j < 2; j++) {

@@ -5,12 +5,10 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-#include <vector>
-#include <iostream>
-using namespace std;
+
 
 int main() {
-    // vector<char> boardState = {'-', '-', 'X', '-', 'X', '-', 'X', '-', '-'};
+    // create new board and display
     Board board;
     TicTacToeDisplay display;
 
@@ -21,32 +19,32 @@ int main() {
     Event event;
 
     // Game vars
-    int index;
-    bool playerMove = true;
+    bool playerMove = true; // Tracks if player made a move or not
+    bool leftClicked = false; // Makes sure left click was released
+    bool boardLoaded = false;  // Makes sure board loads first, then ai thinks about move to avoid lag
     char player = '-';
     char computer = '-';
     Vector2i mousePos;
-    bool leftClicked = false;
-    int bestMove;
-    bool firstTimeThrough = true;  // Makes sure board loads first, then ai thinks about move to avoid lag
 
     // while the window is open
     while( window.isOpen() ) {
         // clear any existing contents
         window.clear();
  
-        if (player != '-') {
+        // If player picked X or O
+        if (player == 'X' || player == 'O') {
             // Load tic tac toe board
             display.displayBoard(window);
             display.displayBoardMoves(window, board);
 
             // Make ai move
-            if (!firstTimeThrough && !playerMove) {
-                bestMove = minimax(board);
-                board.addMove(bestMove, computer);
+            if (boardLoaded && !playerMove) {
+                board.addMove(minimax(board), computer);
                 playerMove = true;
             }
-            firstTimeThrough = false;
+
+            // Update since board loaded
+            boardLoaded = true;
 
             // check if any events happened since the last time checked
             while( window.pollEvent(event) ) {
@@ -57,11 +55,12 @@ int main() {
                 }
                 // Check for left clicks
                 if (Mouse::isButtonPressed(Mouse::Left) && !leftClicked && playerMove) {
+                    leftClicked = true;
                     mousePos = Mouse::getPosition(window);
-                    index = display.getClickedSquare(mousePos.x, mousePos.y);
-                    if (board.addMove(index, player)) {
+                    if (board.addMove(display.getClickedSquare(mousePos.x, mousePos.y), player)) {
                         playerMove = false;
                     }
+                    display.displayBoardMoves(window, board);
                 }
                 // Check for left click release
                 if (!Mouse::isButtonPressed(Mouse::Left)) {
@@ -73,7 +72,32 @@ int main() {
 
                     // Reset variables
                     player = '-';
-                    firstTimeThrough = true;
+                    boardLoaded = false;
+                    leftClicked = false;
+                    break;
+                }
+            }
+        }
+        // If gameover
+        else if (player == 'N') {
+            // Load tic tac toe board
+            display.displayBoard(window);
+            display.displayBoardMoves(window, board);
+            // Load game over
+            display.displayGameOver(window, board);
+            while( window.pollEvent(event) ) {
+                // if event type corresponds to pressing window X
+                if(event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Q)) {
+                    // tell the window to close
+                    window.close();
+                }
+                // Check for R press
+                if (Keyboard::isKeyPressed(Keyboard::R)) {                    
+                    board.restart();
+
+                    // Reset variables
+                    player = '-';
+                    boardLoaded = false;
                     leftClicked = false;
                     break;
                 }
@@ -91,16 +115,22 @@ int main() {
                 }
                 // Check for left clicks
                 if (Mouse::isButtonPressed(Mouse::Left) && !leftClicked) {
+                    leftClicked = true;
                     mousePos = Mouse::getPosition(window);
+                    // Check which player user chose
                     player = display.checkChosenPlayer(mousePos.x, mousePos.y);
+                    // if player chose O
                     if (player == 'O') {
+                        // O goes second
                         playerMove = false;
                         computer = 'X';
                     }
+                    // if player chose X
                     if (player == 'X') {
                         computer = 'O';
                     }
                 }
+                // Make sure left click is released
                 if (!Mouse::isButtonPressed(Mouse::Left)) {
                     leftClicked = false;
                 }
@@ -108,11 +138,12 @@ int main() {
         }
 
         if (board.gameOver()) {
-            display.displayGameOver(window, board);
+            // Update player to signify game over
+            player = 'N';
         }
 
+        // Display contents of current window
         window.display();
     }
-
     return 0;
 }
