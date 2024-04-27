@@ -6,7 +6,7 @@ SRC_FILES = main.cpp board.cpp minimax.cpp display.cpp xShape.cpp oShape.cpp
 # NO EDITS NEEDED BELOW THIS LINE
 
 CXX = g++
-# CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors -g
+CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors -g
 CXXFLAGS_DEBUG = -g
 CXXVERSION = -std=c++17
 
@@ -74,6 +74,6 @@ depend:
 main.o: main.cpp board.h minimax.h display.h xShape.h oShape.h
 board.o: board.cpp board.h
 minimax.o: minimax.cpp minimax.h board.h
-display.o: display.cpp display.h xShape.h oShape.h
+display.o: display.cpp display.h xShape.h oShape.h board.h
 xShape.o: xShape.cpp xShape.h
 oShape.o: oShape.cpp oShape.h
