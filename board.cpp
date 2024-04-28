@@ -17,6 +17,16 @@ Board::Board(const vector<char> BOARD_STATE) {
     _boardState = BOARD_STATE;
 }
 
+Board::Board(const Board& OTHER) {
+    const int BOARD_SIZE = 9;
+
+    // Create a board copy
+    _boardState.clear();
+    for (int i=0; i < BOARD_SIZE; i++) {
+        _boardState.push_back(OTHER.getBoardState().at(i));
+    }
+}
+
 Board::~Board() {
     _boardState.clear();
 }
@@ -28,16 +38,6 @@ void Board::restart() {
     _boardState.clear();
     for (int i=0; i < BOARD_SIZE; i++) {
         _boardState.push_back('-');
-    }
-}
-
-Board::Board(const Board& OTHER) {
-    const int BOARD_SIZE = 9;
-
-    // Create a board copy
-    _boardState.clear();
-    for (int i=0; i < BOARD_SIZE; i++) {
-        _boardState.push_back(OTHER.getBoardState().at(i));
     }
 }
 

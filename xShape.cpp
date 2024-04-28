@@ -22,12 +22,12 @@ void XShape::setPosition(const int X, const int Y) {
     _xLine2.setPosition(X, Y);
 }
 
-void XShape::draw(RenderWindow& window) {
+void XShape::draw(RenderWindow& window) const {
     window.draw(_xLine1);
     window.draw(_xLine2);
 }
 
-bool XShape::checkCollision(const int X, const int Y) {
+bool XShape::checkCollision(const int X, const int Y) const {
     const int floatX = static_cast<float> (X);
     const int floatY = static_cast<float> (Y);
 

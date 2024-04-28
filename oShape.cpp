@@ -21,12 +21,12 @@ void OShape::setPosition(const int X, const int Y) {
     _circleInner.setPosition(X, Y);
 }
 
-void OShape::draw(RenderWindow& window) {
+void OShape::draw(RenderWindow& window) const {
     window.draw(_circleOuter);
     window.draw(_circleInner);
 }
 
-bool OShape::checkCollision(const int X, const int Y) {
+bool OShape::checkCollision(const int X, const int Y) const {
     const int floatX = static_cast<float> (X);
     const int floatY = static_cast<float> (Y);
 

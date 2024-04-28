@@ -9,12 +9,52 @@
 
 class TicTacToeDisplay {
     public:
+        /**
+         * @brief Construct a new Tic Tac Toe Display object
+         * 
+         */
         TicTacToeDisplay();
-        void displayBoard(sf::RenderWindow& window);
+        /**
+         * @brief Draws tic tac toe board to screen
+         * 
+         * @param window - Window to draw to
+         */
+        void displayBoard(sf::RenderWindow& window) const;
+        /**
+         * @brief Draws initial menu of user picking X or O
+         * 
+         * @param window - Window to draw to
+         */
         void displayMenu(sf::RenderWindow& window);
-        char checkChosenPlayer(const int X, const int Y);
-        int getClickedSquare(const int X, const int Y);
+        /**
+         * @brief Checks which piece player chose
+         * 
+         * @param X - X mouse coordinate
+         * @param Y - Y mouse coordinate
+         * @return char
+         */
+        char checkChosenPlayer(const int X, const int Y) const;
+        /**
+         * @brief Get the Clicked Square object
+         * 
+         * @param X - X mouse coordinate
+         * @param Y - Y mouse coordinate
+         * @return int - Index of clicked square
+         */
+        int getClickedSquare(const int X, const int Y) const;
+        /**
+         * @brief Draw all made moves in current board state to screen
+         * 
+         * @param window - Window to draw to
+         * @param BOARD - Current board
+         */
         void displayBoardMoves(sf::RenderWindow& window, const Board BOARD);
+        /**
+         * @brief Draw line across board indicating someone won
+         * 
+         * @param window - Window to draw to
+         * @param BOARD  - Current board
+         */
         void displayGameOver(sf::RenderWindow& window, const Board BOARD);
 
     private:
@@ -28,7 +68,6 @@ class TicTacToeDisplay {
         sf::RectangleShape _gameOverLine;
         sf::Font _font;
         sf::Text _menuText;
-
 };
 
 #endif // DISPLAY_H

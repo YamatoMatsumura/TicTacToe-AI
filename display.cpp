@@ -37,7 +37,7 @@ TicTacToeDisplay::TicTacToeDisplay() {
     _gameOverLine.setSize(Vector2f(BOARD_LENGTH, BOARD_THICKNESS * 1.5));
     _gameOverLine.setFillColor(Color::Yellow);
 }
-void TicTacToeDisplay::displayBoard(RenderWindow& window) {
+void TicTacToeDisplay::displayBoard(RenderWindow& window) const {
     window.draw(_boardVLine1);
     window.draw(_boardVLine2);
     window.draw(_boardHLine1);
@@ -60,7 +60,7 @@ void TicTacToeDisplay::displayMenu(RenderWindow& window) {
     _oShape.draw(window);
 }
 
-char TicTacToeDisplay::checkChosenPlayer(const int X, const int Y) {
+char TicTacToeDisplay::checkChosenPlayer(const int X, const int Y) const {
     if (_xShape.checkCollision(X, Y)) {
         return 'X';
     }
@@ -73,7 +73,7 @@ char TicTacToeDisplay::checkChosenPlayer(const int X, const int Y) {
 
 }
 
-int TicTacToeDisplay::getClickedSquare(const int X, const int Y) {
+int TicTacToeDisplay::getClickedSquare(const int X, const int Y) const {
     const int WINDOW_WIDTH = 690;
     const int SQUARE_WIDTH = 230;
     int col = 0;
