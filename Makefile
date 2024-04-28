@@ -1,7 +1,7 @@
 # THE NAME OF YOUR EXECUTABLE
 TARGET = tictactoe.exe
 # ALL CPP COMPILABLE IMPLEMENTATION FILES THAT MAKE UP THE PROJECT
-SRC_FILES = main.cpp board.cpp minimax.cpp display.cpp xShape.cpp oShape.cpp
+SRC_FILES = main.cpp board.cpp minimax.cpp display.cpp xShape.cpp oShape.cpp storage.cpp
 
 # NO EDITS NEEDED BELOW THIS LINE
 
@@ -71,9 +71,10 @@ depend:
 .PHONY: all clean depend
 
 # DEPENDENCIES
-main.o: main.cpp board.h minimax.h display.h xShape.h oShape.h
+main.o: main.cpp board.h minimax.h display.h xShape.h oShape.h storage.h
 board.o: board.cpp board.h
 minimax.o: minimax.cpp minimax.h board.h
 display.o: display.cpp display.h xShape.h oShape.h board.h
 xShape.o: xShape.cpp xShape.h
 oShape.o: oShape.cpp oShape.h
+storage.o: storage.cpp storage.h
