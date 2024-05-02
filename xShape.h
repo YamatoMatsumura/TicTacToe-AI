@@ -10,6 +10,7 @@ class XShape {
          * 
          */
         XShape();
+    
         /**
          * @brief Set the Position object
          * 
@@ -17,12 +18,14 @@ class XShape {
          * @param Y - Y coordinate
          */
         void setPosition(const int X, const int Y);
+
         /**
          * @brief Draws X shape to window
          * 
          * @param window - Window to draw to
          */
         void draw(sf::RenderWindow& window) const;
+
         /**
          * @brief Checks if given coordinate collides with X shape
          * 

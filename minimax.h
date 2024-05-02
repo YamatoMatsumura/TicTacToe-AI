@@ -12,6 +12,7 @@
  * @return int - Index of best move
  */
 int minimax(Board board);
+
 /**
  * @brief Finds best move for O
  * 
@@ -20,6 +21,7 @@ int minimax(Board board);
  * @param bestValue - Value rating of best move. -1 if X winning, 1 if O winning, 0 if tie
  */
 void min(Board board, int& bestMove, int& bestValue);
+
 /**
  * @brief Finds best move for X
  * 
@@ -28,5 +30,6 @@ void min(Board board, int& bestMove, int& bestValue);
  * @param bestValue - Value rating of best move. -1 is X winning, 1 if O winning, 0 if tie
  */
 void max(Board board, int& bestMove, int& bestValue);
+
 
 #endif // MINIMAX_H

@@ -10,6 +10,7 @@
  * @return int 
  */
 int getSaveFileCount();
+
 /**
  * @brief Saves current board state by writing it to a txt file in saveFiles folder
  * 
@@ -19,12 +20,14 @@ int getSaveFileCount();
  * @param PLAYER 
  */
 void saveGame(int& nextSaveFileNum, const std::vector<char> BOARD_STATE, const int SAVE_FILE_COUNT, const char PLAYER);
+
 /**
  * @brief Displays all save files in terminal
  * 
  * @param fileCount - Total number of save files in saveFiles folder
  */
 void showSaveFiles(int fileCount);
+
 /**
  * @brief Loads chosen save file into current game
  * 
@@ -33,6 +36,5 @@ void showSaveFiles(int fileCount);
  * @param player - If in game being loaded, player is X or O
  */
 void loadSaveFile(const int SAVE_FILE_NUM, Board& board, char& player);
-
 
 #endif // STORAGE_H

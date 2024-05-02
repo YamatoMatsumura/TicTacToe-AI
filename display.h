@@ -14,18 +14,21 @@ class TicTacToeDisplay {
          * 
          */
         TicTacToeDisplay();
+
         /**
          * @brief Draws tic tac toe board to screen
          * 
          * @param window - Window to draw to
          */
         void displayBoard(sf::RenderWindow& window) const;
+
         /**
          * @brief Draws initial menu of user picking X or O
          * 
          * @param window - Window to draw to
          */
         void displayMenu(sf::RenderWindow& window);
+
         /**
          * @brief Checks which piece player chose
          * 
@@ -34,6 +37,7 @@ class TicTacToeDisplay {
          * @return char
          */
         char checkChosenPlayer(const int X, const int Y) const;
+
         /**
          * @brief Get the Clicked Square object
          * 
@@ -42,6 +46,7 @@ class TicTacToeDisplay {
          * @return int - Index of clicked square
          */
         int getClickedSquare(const int X, const int Y) const;
+
         /**
          * @brief Draw all made moves in current board state to screen
          * 
@@ -49,6 +54,7 @@ class TicTacToeDisplay {
          * @param BOARD - Current board
          */
         void displayBoardMoves(sf::RenderWindow& window, const Board BOARD);
+
         /**
          * @brief Draw line across board indicating someone won
          * 
@@ -56,6 +62,7 @@ class TicTacToeDisplay {
          * @param BOARD  - Current board
          */
         void displayGameOver(sf::RenderWindow& window, const Board BOARD);
+
 
     private:
         XShape _xShape;

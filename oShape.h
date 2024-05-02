@@ -10,6 +10,7 @@ class OShape {
          * 
          */
         OShape();
+
         /**
          * @brief Set the Position object
          * 
@@ -17,12 +18,14 @@ class OShape {
          * @param Y - Y Coordinate
          */
         void setPosition(const int X, const int Y);
+
         /**
          * @brief Draws O shape to given screen
          * 
          * @param window - Window to draw to
          */
         void draw(sf::RenderWindow& window) const;
+
         /**
          * @brief Checks if given coordinate collides with O Shape
          * 
