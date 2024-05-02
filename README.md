@@ -22,6 +22,7 @@ The program also features a save/load menu where users can save/load different t
 ### Controls
 Moves can be made by clicking on the board on where you would like to make a move.
 
+To restart a game, hit `r`.  
 To save a board state, hit `s` on the keyboard. This should populate the current board state into the saveFiles folder.  
 To load a board state, hit `l` on the keyboard. A save file menu will load in the terminal. An example one is shown below. To load a game, press the number corresponding to the board state to load.  
 To exit the load menu, hit `l` again and you can continue playing the game.  
