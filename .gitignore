@@ -3,6 +3,7 @@ to-do.txt
 Makefile.bak
 /.vscode
 /fonts
+/saveFiles
 
 # Prerequisites
 *.d
