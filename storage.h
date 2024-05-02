@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #ifndef STORAGE_H
 #define STORAGE_H
 

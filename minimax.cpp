@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #include "minimax.h"
 
 using namespace std;

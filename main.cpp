@@ -1,3 +1,7 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
+
 #include "board.h"
 #include "minimax.h"
 #include "display.h"

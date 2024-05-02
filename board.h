@@ -1,3 +1,7 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
+
 #ifndef BOARD_H
 #define BOARD_H
 

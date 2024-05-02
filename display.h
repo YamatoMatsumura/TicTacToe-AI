@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #ifndef DISPLAY_H
 #define DISPLAY_H
 

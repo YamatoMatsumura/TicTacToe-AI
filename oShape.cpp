@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #include "oShape.h"
 
 #include <SFML/Graphics.hpp>

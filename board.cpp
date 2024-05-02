@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #include "board.h"
 #include <vector>
 #include <fstream>

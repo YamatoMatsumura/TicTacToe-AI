@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #ifndef MINIMAX_H
 #define MINIMAX_H
 

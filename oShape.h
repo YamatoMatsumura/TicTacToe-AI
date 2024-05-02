@@ -1,3 +1,6 @@
+// Author: Yamato Matsumura
+// Assignment: Final Project
+
 #ifndef O_SHAPE_H
 #define O_SHAPE_H
 
