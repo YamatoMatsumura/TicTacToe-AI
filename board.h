@@ -2,7 +2,7 @@
 #define BOARD_H
 
 #include <vector>
-#include <fstream> // Not used yet
+#include <fstream>
 
 class Board {
     public:
